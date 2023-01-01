@@ -1,0 +1,39 @@
+# Local .terraform directories
+файлы в скрытом каталоге терраформа
+**/.terraform/*
+
+# .tfstate files
+файлы состояния терраформа
+
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+логи ошибок/крашей
+
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files, which are likely to contain sensitive data, such as
+# password, private keys, and other secrets. These should not be part of version
+# control as they are data points which are potentially sensitive and subject
+# to change depending on the environment.
+файлы с перемеными, которые могут содержать чувствительные данные, такие как пароли
+*.tfvars
+*.tfvars.json
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+данные о локальном переопределении ресурсов
+
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+
+# Ignore CLI configuration files
+конфигурационные файлы терминального интерфейса
+
+.terraformrc
+terraform.rc
