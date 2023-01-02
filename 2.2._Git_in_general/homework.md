@@ -13,6 +13,9 @@
 в IDE меняется количество представленных в проекте файлов.
 ![img.png](images/img3.png)
 
+гитлаб
+![img.png](images/img6.png)
+
 Задание № 4
 Скрины работы из IDE
 ![img.png](images/img4.png)
