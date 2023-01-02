@@ -1,6 +1,11 @@
 Задание № 1
 присоеденить репозиторий из gitlab
-![img.png](../images/img.png)
+![img.png](images/img.png)
 
 Задание № 2
-![img.png](../images/img2.png)
+![img.png](images/img2.png)
+
+Задание № 3
+Создана ветка, теперьв гитхабе можно выбрать между main и fix. При переключении (git switch) между ветками
+в IDE меняется количество представленных в проекте файлов.
+![img.png](images/img3.png)
