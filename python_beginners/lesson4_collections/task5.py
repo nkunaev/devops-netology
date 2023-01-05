@@ -5,10 +5,22 @@
 
 vars = ['2018-01-01', 'yandex', 'cpc', 100]
 
-def to_dict(list_):
-    result, *rest = reversed(list_)
-    for i in rest:
-        result = {i: result}
-    return print(result)
+def to_dict(list_: list):
+    result = list_[-1]
+    for i in reversed(range(len(list_) - 1)):
+        result = {list_[i]: result}
+    return result
 
-to_dict(vars)
+print(to_dict(vars))
+print(vars[-1])
+# def to_dict(list_):
+#     result, *rest = reversed(list_)
+#     print(result)
+#     print(rest)
+#     for i in rest:
+#         result = {i: result}
+#     return print(result)
+
+
+
+
