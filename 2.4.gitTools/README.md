@@ -1,7 +1,22 @@
 1. Найдите полный хеш и комментарий коммита, хеш которого начинается на aefea?
 aefead2207ef7e2aa5dc81a34aedf0cad4c32545  Update CHANGELOG.md
+
+UDP
+git show aefea
+commit aefead2207ef7e2aa5dc81a34aedf0cad4c32545
+Author: Alisdair McDiarmid <alisdair@users.noreply.github.com>
+
 2. Какому тегу соответствует коммит 85024d3?
 v0.12.23
+
+UDP
+PS C:\my_projects\devops-netology\terra_full> git show 85024d3
+commit 85024d3100126de36331c6982bfaac02cdab9e76 (tag: v0.12.23)
+Author: tf-release-bot <terraform@hashicorp.com>
+Date:   Thu Mar 5 20:56:10 2020 +0000
+
+    v0.12.23 <- tag
+
 3. Сколько родителей у коммита b8d720? Напишите их хеши.
 
 *   b8d720f834 Merge pull request #23916 from hashicorp/cgriggs01-stable
@@ -10,7 +25,16 @@ v0.12.23
 |/
 *   56cd7859e0 Merge pull request #23857 from hashicorp/cgriggs01-stable 2-й 
 
+UDP
+PS C:\my_projects\devops-netology\terra_full> git log b8d720 -3 --graph --oneline
+*   b8d720f834 Merge pull request #23916 from hashicorp/cgriggs01-stable 
+|\
+| * 9ea88f22fc add/update community provider listings
+|/
+*   56cd7859e0 Merge pull request #23857 from hashicorp/cgriggs01-stable
+
 4. Перечислите хеши и комментарии всех коммитов которые были сделаны между тегами v0.12.23 и v0.12.24.
+
 PS C:\my_projects\devops-netology\terra_full> git log --oneline v0.12.23..v0.12.24 
 33ff1c03bb (tag: v0.12.24) v0.12.24
 b14b74c493 [Website] vmc provider links
