@@ -131,17 +131,27 @@ root@sysadm-fs:/home/vagrant# echo $?
 Задание 19.1
 
 89  mdadm --detail /dev/md0
-   90  mdadm --manage /dev/md0 --remove /dev/sdb1
-   91  sfdisk -d /dev/sdc1 | sfdisk --force /dev/sdb1
-   92  fdisk -l | grep dev
-   93  mdadm --manage /dev/md0 --add /dev/sdb1
-   94  mdadm --detail /dev/md0
+
+90  mdadm --manage /dev/md0 --remove /dev/sdb1
+
+91  sfdisk -d /dev/sdc1 | sfdisk --force /dev/sdb1
+
+92  fdisk -l | grep dev
+
+93  mdadm --manage /dev/md0 --add /dev/sdb1 
+
+94  mdadm --detail /dev/md0
 
 Проверили статус рейда, убедились, что 1 диск не работает
+
 Удалили сбойный диск(раздел)
+
 перенесли разметку с раздела работающего диска на новый
+
 проверили, что разметра встала корретно и информация идентична на обоих партициях
+
 добавили новый диск в рейд
+
 проверили, что все заработало и оба диска активны
 
 ![img.png](img/img12.png)
@@ -149,6 +159,7 @@ root@sysadm-fs:/home/vagrant# echo $?
 Задание 20.
 
 Уничтожили vm 
+
 ![img.png](img/img13.png)
 
 
