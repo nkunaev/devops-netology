@@ -2,15 +2,15 @@
 
 Установил плагин, зарегистрировал аккаунт и создал запись с лог/пасом от почты 
 
-![img.png](img.png)
+![img.png](img/img.png)
 
 Задание 2
 
 Включил 2FA
 
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
 
 Задание 3
 
@@ -19,20 +19,20 @@ a2enmod ssl, добавил в a2enmod конфиг файл сайта, ука�
 порт прослушиваия 443, что включен ssl и пути к сертификату и ключу. \
 Также в ufw добавил надстройку для apache 
 
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
 
 Задание 4.
 
 Попал под раздачу наш РКН \
 root@vagrant:/home/vagrant/testssl.sh# ./testssl.sh -U --sneaky https://rkn.gov.ru 
 
-![img_4.png](img_4.png)
+![img_4.png](img/img_4.png)
 
 Задание 5.
 
 ssh-keygen; ssh-copy-id vagrant@192.168.1.108; ssh vagrant@192.168.1.108 
 
-![img_5.png](img_5.png)
+![img_5.png](img/img_5.png)
 
 Задание 6.
 
@@ -44,7 +44,7 @@ Host my_vagrant \
         User vagrant \
         IdentityFile ~/.ssh/my_key 
 
-![img_6.png](img_6.png)
+![img_6.png](img/img_6.png)
 
 
 Задание 7.
@@ -55,7 +55,7 @@ chown vagrant:vagrant ./myint.pcap
 
 Через winscp перенес на винду и открыл в wireshark'e
 
-![img_7.png](img_7.png)
+![img_7.png](img/img_7.png)
 
 Задание 8
 
@@ -71,11 +71,11 @@ nmap -v -A scanme.nmap.org
 
 Я окрывал только 22 и 443, осталось добавить 80.
 
-![img_8.png](img_8.png)
+![img_8.png](img/img_8.png)
 
 iptable -nvL
 
-![img_9.png](img_9.png)
+![img_9.png](img/img_9.png)
 
 
 
