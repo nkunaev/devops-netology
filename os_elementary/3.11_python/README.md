@@ -72,12 +72,58 @@ os_elementary/3.11_python/README.md
 
 ### Ваш скрипт:
 ```python
-???
+import os
+print(''' 
+Для Unix систем необходимо указывать абсолютный путь в формате /home/user/project/
+Для Windows в формате C:\\patch\\to\\dir
+''')
+route = input("Укажите путь к каталогу: ")
+
+sh_command = [f"cd {route}", "git status"]
+result_os = os.popen(' && '.join(sh_command)).read()
+count = 0
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = result.replace('\tmodified:   ', '')
+        count += 1
+        print(prepare_result)
+if count == 0:
+    print("There's no changes")
+
+-----ИЛИ-------
+
+import os
+from sys import argv
+
+
+sh_command = [f"cd {argv[1]}", "git status"]
+result_os = os.popen(' && '.join(sh_command)).read()
+count = 0
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = result.replace('\tmodified:   ', '')
+        count += 1
+        print(prepare_result)
+if count == 0:
+    print("There's no changes")
+
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+Для Unix систем необходимо указывать абсолютный путь в формате /home/user/project/
+Для Windows в формате C:\patch\to\dir
+
+Укажите путь к каталогуC:\my_projects\devops-netology
+os_elementary/3.11_python/README.md
+
+---------------------------
+C:\my_projects\devops-netology\os_elementary\3.11_python>python ./test.py C:\my_projects\devops-netology
+
+os_elementary/3.11_python/README.md
+
+![img_1.png](img_1.png)
+
 ```
 
 ------
@@ -126,14 +172,68 @@ os_elementary/3.11_python/README.md
 
 ### Ваш скрипт:
 ```python
-???
+from socket import gethostbyname
+from sys import exit
+
+
+def get_sites_addr():
+    sites = {'drive.google.com': 'none', 'mail.google.com': 'none', 'google.com': 'none'}
+    for site in sites.keys():
+        sites[site] = gethostbyname(site)
+    return sites
+
+
+def print_sites_addr(sites: dict):
+    for key, val in sites.items():
+        print(key, val)
+    print()
+
+
+def check_vals_in_dns(sites: dict):
+    for url, addr in sites.items():
+        new_addr = gethostbyname(url)
+        if addr != new_addr:
+            print(f"[ERROR] {url} IP mismatch: {addr} {gethostbyname(url)}. ")
+            exit(0)
+    print("Все адреса совпадают")
+    print()
+
+print("Получаем соответствие ip-адресов - dns записям.")
+sites = get_sites_addr()
+while True:
+    status = 0
+    print('''1 - распечатать соответствие ip-адресов - dns записям 
+2 - сравнить текущее значение ip-адресов с сохраненным значением
+3 - завершить работу скрипта
+    ''')
+    status = int(input('Введите значение: '))
+    if status == 1:
+        print_sites_addr(sites)
+    elif status == 2:
+        check_vals_in_dns(sites)
+    elif status == 3:
+        print("Завершаю работу. ")
+        exit(0)
+    else:
+        print("Введите корректное значение из списка.")
+        print()
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
-```
+Введите значение: 1
+drive.google.com 173.194.222.194
+mail.google.com 64.233.164.19
+google.com 142.251.1.100
 
+1 - распечатать соответствие ip-адресов - dns записям 
+2 - сравнить текущее значение ip-адресов с сохраненным значением
+3 - завершить работу скрипта
+    
+Введите значение: 2
+Все адреса совпадают
+```
+![img_4.png](img_4.png)
 ----
 
 ### Правила приема домашнего задания
