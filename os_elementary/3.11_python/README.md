@@ -45,16 +45,21 @@ for result in result_os.split('\n'):
 ```python
 import os
 
-sh_command = ["cd C:\\Users\\kunaev\\jetbrain\\homework\\devops-netology", "git status"]
+sh_command = [f"cd {os.getcwd()}", "git status"]
 result_os = os.popen(' && '.join(sh_command)).read()
 count = 0
+row = 0
+print(f"Скрипт запущен в каталоге {os.getcwd()}. Уточняем данные по изменениям...")
 for result in result_os.split('\n'):
     if result.find('modified') != -1:
-        prepare_result = result.replace('\tmodified:   ', '')
+        if row == 0:
+            print("Обнаружены изменения в следующих файлах: ")
+            row += 1
+        prepare_result = os.getcwd() + "\\" + result.replace('\tmodified:   ', '')
         count += 1
         print(prepare_result)
 if count == 0:
-    print("There's no changes")
+    print("В текущем каталоге нет изменений, или он не является локальным репозиторием. ")
 ```
 
 ### Вывод скрипта при запуске при тестировании:
@@ -164,7 +169,7 @@ def check_vals_in_dns(sites: dict):
     for url, addr in sites.items():
         new_addr = gethostbyname(url)
         if addr != new_addr:
-            print(f"[ERROR] {url} IP mismatch: {addr} {gethostbyname(url)}. ")
+            print(f"[ERROR] {url} IP mismatch: {addr} {new_addr}. ")
             exit(0)
     print("Все адреса совпадают")
     print()
