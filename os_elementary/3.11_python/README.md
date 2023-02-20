@@ -64,9 +64,9 @@ if count == 0:
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-![img.png](img.png)
-
-os_elementary/3.11_python/README.md
+Скрипт запущен в каталоге C:\my_projects\devops-netology\os_elementary\3.11_python. Уточняем данные по изменениям...
+Обнаружены изменения в следующих файлах: 
+C:\my_projects\devops-netology\os_elementary\3.11_python\README.md
 ```
 
 ------
