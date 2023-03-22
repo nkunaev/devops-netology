@@ -63,18 +63,22 @@ https://hub.docker.com/repository/docker/kunaev/nginx/general
 - docker run -it -v ./data:/data -d debian
 
 ![img_1.png](img/img_1.png)
+
 4. Тестим общее пространство
 Из вагранта: cat /etc/*release > ./data/vagrant
 Далее поочередно подключился к контейнерам и созранил вывыов
 os-release в свои файлы:
+
 vagrant@server1:~$ docker exec -it jovial_robinson bash
-[root@33b3f9c795ec /]# cat /etc/*release > /data/centos  
-[root@33b3f9c795ec /]# exit
+\[root@33b3f9c795ec /]# cat /etc/*release > /data/centos  
+\[root@33b3f9c795ec /]# exit
 exit
+
 vagrant@server1:~$ docker exec -it exciting_wilbur bash
 root@8238e0e7a5df:/# cat /etc/*release > /data/debian
 root@8238e0e7a5df:/# exit
 exit
+
 5. Находясь в вагранте объеденил вывод файлов
 ````
 agrant@server1:~$ cat ./data/
