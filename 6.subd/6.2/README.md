@@ -3,18 +3,18 @@
 Единственное, что по инструкции хотел файл с переменными описать в  env_file:, но почему-то не сработало,
 пришлось указывать с дополнительным ключем --env-file при запуске docker-compose.
 
-![img.png](img.png)
+![img.png](img/img.png)
 
 ## Задание 2
 
 * итоговый список БД после выполнения пунктов выше;
- ![img_1.png](img_1.png)
+ ![img_1.png](img/img_1.png)
 * описание таблиц (describe);
- ![img_2.png](img_2.png)
+ ![img_2.png](img/img_2.png)
 * SQL-запрос для выдачи списка пользователей с правами над таблицами test_db; \
 SELECT * FROM information_schema.table_privileges, можно уточнить поиск по конкретному пользователю, добавив WHERE grantee = '{username}'
 * список пользователей с правами над таблицами test_db.
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
 
 ## Задание 3
 
@@ -87,7 +87,7 @@ pgadmin=# SELECT surname FROM clients WHERE orders IS NOT NULL;
 
 ```
 
-![img_5.png](img_5.png)
+![img_5.png](img/img_5.png)
 
 ## Задание 4
 
@@ -130,7 +130,7 @@ vagrant@server1:/home/kunaev/Desktop/vagrant/vm/hw6.2$ docker exec -it postgres 
 pg_restore: connecting to database for restore
 pg_restore: implied data-only restore
 ```
-![img_6.png](img_6.png)
+![img_6.png](img/img_6.png)
 
 Только странно, БД восстановилась, а таблиц в ней почему-то не найдено
 pgadmin=# \dt
