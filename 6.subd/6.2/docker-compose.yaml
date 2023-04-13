@@ -1,0 +1,28 @@
+version: "3.5"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:12
+    volumes:
+      - ./bd/:/opt/bd
+      - ./backup_db:/opt/backup_bd
+    env_file:
+      - ./vars.env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PW}
+    ports:
+      - "5432:5432"
+    restart: always
+    
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    env_file:
+      - vars.env
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_MAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
+    ports:
+      - "5050:80"
+    restart: always
