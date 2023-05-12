@@ -70,4 +70,32 @@ nginx радостно завелся.
 согласно инструкии на [гитхабе](https://github.com/pyToshka/terraform-provider-virtualbox), выяснилось, что 
 в ОС Ubuntu 22.04 оказывается нет предустановленного go. Не беда - поставил из стандартной репы 1.18.1,
 так выяснилось, что метод get - устаревший (deprecated). Не беда - поставил через go install, 
-но terraform провайдера в упор не видит, как и не видит его в репозитории. В общем мрак)
+но terraform провайдера в упор не видит, как и не видит его в репозитории зеркала яндекса. В общем мрак)
+
+```ignorelang
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/virtualbox...
+╷
+│ Error: Invalid provider registry host
+│ 
+│ The host "registry.terraform.io" given in in provider source address
+│ "registry.terraform.io/hashicorp/virtualbox" does not offer a Terraform
+│ provider registry.
+
+```
+
+.terraformrc
+
+```ignorelang
+provider_installation {
+  network_mirror {
+    url = "https://terraform-mirror.yandexcloud.net/"
+    include = ["registry.terraform.io/*/*"]
+  }
+  direct {
+    exclude = ["registry.terraform.io/*/*"]
+  }
+}
+```
