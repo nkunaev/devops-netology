@@ -9,4 +9,4 @@ src/.terraform
 
 # own secret vars store.src
 personal.auto.tfvars
-variables.tf
+./variables.tf

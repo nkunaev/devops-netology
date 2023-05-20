@@ -1,3 +1,13 @@
+###metadata
+variable "metadata_info" {
+  default = {
+    serial-port-enable = 1
+  }
+  type = object({
+    serial-port-enable = number
+  })
+}
+
 ###cloud vars
 variable "token" {
   type        = string
