@@ -7,6 +7,6 @@ src/.terraform
 *.tfstate
 *.tfstate.*
 
-# own secret vars store.
+# own secret vars store.src
 personal.auto.tfvars
 variables.tf
