@@ -90,3 +90,59 @@ locals {
 ![img_3.png](img_3.png)
 
 ## Задание 3
+
+* Создайте 3 одинаковых виртуальных диска, размером 1 Гб с помощью ресурса yandex_compute_disk и мета-аргумента count в файле disk_vm.tf .
+
+```terraform
+resource "yandex_compute_disk" "volumes" {
+  count = 3
+
+  name     = "disk-${count.index}"
+  type     = "network-hdd"
+  size     = 1
+  zone     = "ru-central1-a"
+
+}
+```
+
+* Создайте в том же файле одну любую ВМ. Используйте блок dynamic secondary_disk{..} и мета-аргумент for_each для подключения созданных вами дополнительных дисков.
+
+```terraform
+resource "yandex_compute_instance" "vm_with_disks" {
+  name        = "kunaev-vm-with-disks"
+  platform_id = var.vm_countable_maintenance_class
+  #####################################################
+
+  dynamic secondary_disk {
+    for_each = yandex_compute_disk.volumes.*.id
+    content {
+      disk_id = secondary_disk.value
+    }
+  }
+}
+```
+
+* Назначьте ВМ созданную в 1-м задании группу безопасности.
+
+```terraform
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+    security_group_ids = [yandex_vpc_security_group.example.id]
+  }
+```
+
+![img_4.png](img_4.png)
+
+## Задание 4
+* В файле ansible.tf создайте inventory-файл для ansible. Используйте функцию tepmplatefile и файл-шаблон для создания ansible inventory-файла из лекции. Готовый код возьмите из демонстрации к лекции demonstration2. Передайте в него в качестве переменных имена и внешние ip-адреса ВМ из задания 2.1 и 2.2.
+
+![img_5.png](img_5.png)
+
+* Выполните код. Приложите скриншот получившегося файла.
+
+```ignorelang
+> templatefile("./ansible.tftpl", { servers = { server1="62.84.125.175", server2="130.193.36.108", server3="51.250.94.108", server4="84.201.129.228" }})
+<<EOT
+[servers]server1 ansible_host = 62.84.125.175server2 ansible_host = 130.193.36.108server3 ansible_host = 51.250.94.108server4 ansible_host = 84.201.129.228
+```
