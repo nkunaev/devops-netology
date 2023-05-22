@@ -1,9 +1,9 @@
 [servers]
-%{~ for k,v in servers ~}
-${k} ansible_host = ${v}
+
+%{~ for i in servers_countable }
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
 %{~ endfor ~}
 
-
-#templatefile("./ansible.tftpl", { servers = { server1="62.84.125.175", server2="130.193.36.108", server3="51.250.94.108", server4="84.201.129.228" }})
-#yandex_compute_instance.vm_countable[*].network_interface[0].nat_ip_address
-#yandex_compute_instance.vm_for_each[*].network_interface[0].nat_ip_address
+%{~ for i in servers_for_each }
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
+%{~ endfor ~}

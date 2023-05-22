@@ -1,16 +1,16 @@
 ## Задание 1
 
 * Инициализация проекта прошла успешно
-![img.png](img.png)
+![img.png](img/img.png)
 
 * Приложите скриншот входящих правил "Группы безопасности" в ЛК Yandex Cloud 
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 
 ## Задание 2
 
 1. Создайте файл count-vm.tf. Опишите в нем создание двух **одинаковых** виртуальных машин с минимальными параметрами, используя мета-аргумент **count loop**. \
 Созданы 2 VM в "минимальной" комплектации.
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
 
 2.Создайте файл for_each-vm.tf. 
 Опишите в нем создание 2 разных по cpu/ram/disk виртуальных машин, используя мета-аргумент for_each loop.
@@ -87,7 +87,7 @@ locals {
   }
 ```
 5. Инициализируйте проект, выполните код
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
 
 ## Задание 3
 
@@ -132,19 +132,29 @@ resource "yandex_compute_instance" "vm_with_disks" {
   }
 ```
 
-![img_4.png](img_4.png)
+![img_4.png](img/img_4.png)
 
 ## Задание 4
 * В файле ansible.tf создайте inventory-файл для ansible. Используйте функцию tepmplatefile и файл-шаблон для создания ansible inventory-файла из лекции. Готовый код возьмите из демонстрации к лекции demonstration2. Передайте в него в качестве переменных имена и внешние ip-адреса ВМ из задания 2.1 и 2.2.
-
-![img_5.png](img_5.png)
+```terraform
+resource "local_file" "inventory_cfg" {
+  content = templatefile("${path.module}/ansible.tftpl", {
+    servers_countable   = yandex_compute_instance.vm_countable
+    servers_for_each    = yandex_compute_instance.vm_for_each
+  })
+  filename = "${abspath(path.module)}/inventory.cfg"
+}
+```
 
 * Выполните код. Приложите скриншот получившегося файла.
 
 ```ignorelang
-> templatefile("./ansible.tftpl", { servers = { server1="62.84.125.175", server2="130.193.36.108", server3="51.250.94.108", server4="84.201.129.228" }})
-<<EOT
-[servers]server1 ansible_host = 62.84.125.175server2 ansible_host = 130.193.36.108server3 ansible_host = 51.250.94.108server4 ansible_host = 84.201.129.228
+[servers]
+
+kunaev-vm-countable-0   ansible_host=51.250.94.108
+kunaev-vm-countable-1   ansible_host=84.201.129.228
+vm-1   ansible_host=62.84.125.175
+vm-2   ansible_host=130.193.36.108
 ```
 
 Ссылка на коммит в созданной ветке
