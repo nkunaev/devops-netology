@@ -146,3 +146,6 @@ resource "yandex_compute_instance" "vm_with_disks" {
 <<EOT
 [servers]server1 ansible_host = 62.84.125.175server2 ansible_host = 130.193.36.108server3 ansible_host = 51.250.94.108server4 ansible_host = 84.201.129.228
 ```
+
+Ссылка на коммит в созданной ветке
+e6a9b24 (HEAD -> terraform-03, origin/terraform-03) hw7.3_kunaev
