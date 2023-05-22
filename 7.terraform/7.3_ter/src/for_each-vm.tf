@@ -1,19 +1,28 @@
 variable "vm_resources_list" {
-  type = map
-    default = {
-      vm-1 = {
-        cpu = 2
-        ram = 1
-        disk = 1
-        core_fraction = 5
-      }
-      vm-2 = {
-        cpu = 2
-        ram = 2
-        disk          = 3
-        core_fraction = 5
-        }
-  }
+  type = list(object({
+    vm_name       = string
+    cpu           = number
+    ram           = number
+    disk          = number
+    core_fraction = number
+  }))
+  default = [
+    {
+      vm_name       = "vm-1"
+      cpu           = 2
+      ram           = 1
+      disk          = 1
+      core_fraction = 5
+
+    },
+        {
+      vm_name       = "vm-2"
+      cpu           = 2
+      ram           = 2
+      disk          = 3
+      core_fraction = 5
+    },
+  ]
   description = "There's list if dict's with VM resources"
 }
 
@@ -21,13 +30,13 @@ variable "vm_resources_list" {
 resource "yandex_compute_instance" "vm_for_each" {
   depends_on = [yandex_compute_instance.vm_countable]
   # определим имена и ресурсы
-#  for_each   = {
-#    for index, vm in var.vm_resources_list:
-#    vm.vm_name => vm
-#  }
+  for_each   = {
+    for index, vm in var.vm_resources_list:
+    vm.vm_name => vm
+  }
 
-  for_each   =  var.vm_resources_list
-  name        = each.key
+#  for_each   =  toset(var.vm_resources_list)
+  name        = each.value.vm_name
   platform_id = var.vm_countable_maintenance_class
 
   resources {
