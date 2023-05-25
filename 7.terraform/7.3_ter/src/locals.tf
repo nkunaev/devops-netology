@@ -1,3 +1,3 @@
 locals {
-  ssh-key = "ubuntu:${file("~/.ssh/ya_key.pub")}"
+  ssh-key = "ubuntu:${file("~/.ssh/yc_rsa.pub")}"
 }
