@@ -90,7 +90,7 @@ docker pull quay.io/terraform-docs/terraform-docs
 
 docker run --rm --volume "$(pwd):/terraform-docs" -u $(id -u) quay.io/terraform-docs/terraform-docs markdown ./terraform-docs | tee ./docs.md
 
-Вот сама [дока](https://github.com).
+Вот сама [дока](https://github.com/nkunaev/devops-netology/blob/terraform-04/7.terraform/7.4_terr_approv/demo/04/demonstration1/docs.md).
 
 З.Ы. обнаружена следующая бага:
 
@@ -124,7 +124,7 @@ module.test-vm.yandex_compute_instance.vm[0]
 
 ```
 
-Смотрим ижентификатор
+Смотрим идентификатор
 
 ![img_4.png](img_4.png)
 
