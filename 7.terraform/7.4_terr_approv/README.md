@@ -2,16 +2,16 @@
 
 * Добавьте в файл cloud-init.yml установку nginx.
 
-![img.png](img.png)
+![img.png](img/img.png)
 
 * Предоставьте скриншот подключения к консоли и вывод команды sudo nginx -t.
 
 Вот сам хост
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 
 Вот подключился к нему по ключу и вызвал nginx -v
 
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
 
 ## Задание 2
 
@@ -82,7 +82,7 @@ output "added_subnet_netmask" {
 
 * Замените ресурсы yandex_vpc_network и yandex_vpc_subnet, созданным модулем.
 
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
 
 * Сгенерируйте документацию к модулю с помощью terraform-docs.
 
@@ -126,7 +126,7 @@ module.test-vm.yandex_compute_instance.vm[0]
 
 Смотрим идентификатор
 
-![img_4.png](img_4.png)
+![img_4.png](img/img_4.png)
 
 * Удалите из стейта модуль vpc.
 
@@ -143,10 +143,10 @@ Successfully removed 1 resource instance(s).
 terraform import module.additional_network.yandex_vpc_subnet.stage e9bu8va8orl3s5lek5ek
 ```
 
-![img_5.png](img_5.png)
+![img_5.png](img/img_5.png)
 
 ```ignorelang
 terraform plan
 ```
 
-![img_6.png](img_6.png)
+![img_6.png](img/img_6.png)
