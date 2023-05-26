@@ -14,7 +14,11 @@ provider "yandex" {
   zone      = var.default_zone
 }
 
-
+#module "additional_network" {
+#  source = "./modules/additional_network"
+#  zone   = "ru-central1-a"
+#  cidr   = ["172.16.0.0/24"]
+#}
 
 #создаем облачную сеть
 resource "yandex_vpc_network" "develop" {
@@ -51,4 +55,6 @@ module "test-vm" {
 data "template_file" "cloudinit" {
  template = file("./cloud-init.yml")
 }
+
+
 
