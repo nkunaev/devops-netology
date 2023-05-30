@@ -26,3 +26,13 @@ docker run --rm --tty --volume $(pwd):/tf --workdir /tf bridgecrew/checkov --dow
   * Мodule source "git::..." использует вертку по умолчанию как ссылку 
   * переменные vpc_name и public_key описаны но не используются
 
+# Задание 2
+
+* Возьмите ваш GitHub репозиторий с выполненным ДЗ №4 в ветке 'terraform-04' и сделайте из него ветку 'terraform-05'
+```ignorelang
+git checkout -b terraform-05
+```
+
+* Повторите демонстрацию лекции: настройте YDB, S3 bucket, yandex service account, права доступа и мигрируйте State проекта в S3 с блокировками.
+
+

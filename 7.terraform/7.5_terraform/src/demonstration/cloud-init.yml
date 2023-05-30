@@ -1,0 +1,13 @@
+#cloud-config
+users:
+  - name: ubuntu
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGMnEWb24K3HZ4E0L7GvrcRUECIhelmu0eBKQuGtK4CR kunaev@dub-ws-235
+package_update: true
+package_upgrade: false
+packages:
+ - vim
+ - nginx
