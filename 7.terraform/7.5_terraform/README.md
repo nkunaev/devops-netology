@@ -34,5 +34,37 @@ git checkout -b terraform-05
 ```
 
 * Повторите демонстрацию лекции: настройте YDB, S3 bucket, yandex service account, права доступа и мигрируйте State проекта в S3 с блокировками.
+```ignorelang
 
+  backend "s3" {
+    endpoint = "storage.yandexcloud.net"
+    bucket = "s3bucket-kunaev"
+    region = "ru-central1"
+    key = "terraform.tfstate"
 
+    skip_region_validation      = true
+    skip_credentials_validation = true
+
+    dynamodb_endpoint = "https://docapi.serverless.yandexcloud.net/ru-central1/****"
+    dynamodb_table = "tfstate"
+  }
+  
+  ----------
+terraform init -backend-config="access_key=YC****y" -backend-config="secret_key=YCO****Uy"
+
+```
+
+* Закомитьте в ветку 'terraform-05' все изменения.
+
+```ignorelang
+git commit -a -m "hw7.5_rc2"
+git push origin terraform-05
+```
+* Откройте в проекте terraform console, а в другом окне из этой же директории попробуйте запустить terraform apply.
+* Пришлите ответ об ошибке доступа к State.
+![img.png](img.png)
+
+* Принудительно разблокируйте State. Пришлите команду и вывод.
+![img_1.png](img_1.png)
+
+# Задание 3
