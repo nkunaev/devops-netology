@@ -1,4 +1,5 @@
 #cloud-config
+version: "0.2"
 users:
   - name: ubuntu
     groups: sudo

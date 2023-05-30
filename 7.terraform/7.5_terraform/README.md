@@ -68,3 +68,10 @@ git push origin terraform-05
 ![img_1.png](img_1.png)
 
 # Задание 3
+
+* Сделайте в GitHub из ветки 'terraform-05' новую ветку 'terraform-hotfix'.
+* 
+```ignorelang
+git checkout -b terraform-hotfix
+```
+
