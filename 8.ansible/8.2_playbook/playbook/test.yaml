@@ -1,0 +1,5 @@
+---
+- name: check install
+  hosts: vector
+  tasks:
+    - ping:

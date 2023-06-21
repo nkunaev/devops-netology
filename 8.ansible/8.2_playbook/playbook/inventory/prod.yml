@@ -1,0 +1,16 @@
+---
+clickhouse:
+  hosts:
+    clickhouse-01:
+      ansbile_connection: ssh
+      ansible_host: 127.0.0.1
+      ansible_port: 2222
+      ansible_user: vagrant
+
+vector:
+  hosts:
+    vector-01:
+      ansbile_connection: ssh
+      ansible_host: 127.0.0.1
+      ansible_port: 2222
+      ansible_user: vagrant

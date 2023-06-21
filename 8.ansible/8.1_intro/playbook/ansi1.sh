@@ -1,4 +1,5 @@
 #!/bin/bash
+# -*- ENCODING: UTF-8 -*-
 
 #check ansible
 dpkg -s ansible &> /dev/null
