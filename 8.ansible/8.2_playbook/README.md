@@ -245,6 +245,9 @@ Vector. \
 
 
 * Готовый playbook выложите в свой репозиторий, поставьте тег 08-ansible-02-playbook на фиксирующий коммит, в ответ предоставьте ссылку на него.
-
+```
+kunaev@dub-ws-235:~/projects/devops-netology$ git log -1 --pretty=oneline
+6539b1c66212ce0af66e80cf7c8f1a347985499b (HEAD -> main, tag: 08-ansible-02-playbook) hw8.2
+```
 
 
