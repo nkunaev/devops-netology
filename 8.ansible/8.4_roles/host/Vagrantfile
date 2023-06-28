@@ -1,0 +1,65 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Общие параметры - подсеть, базовый образ, префикс имени и путь до инвентори файла Ансамбля
+ISO = "debian11"
+NET = "192.168.56."
+DOMAIN = ".vagrant"
+HOST_PREFIX = "server."
+INVENTORY_PATH = "./inventory"
+
+#Это список словарей, в нем можно указать параметры ВМ. Кадый новый словарь будет новая ВМ
+
+servers = [
+	{
+	:hostname => HOST_PREFIX + "web" + DOMAIN,
+	:ip => NET + "11",
+	:ssh_host => "20011",
+	:ssh_vm => "22",
+	:ram => 2048,
+	:core => 1,
+	:disk_size => "10GB",
+	},
+  	{
+	:hostname => HOST_PREFIX + "clickhouse" + DOMAIN,
+	:ip => NET + "12",
+	:ssh_host => "20012",
+	:ssh_vm => "22",
+	:ram => 2048,
+	:core => 1,
+	:disk_size => "10GB",
+	},
+   	{
+	:hostname => HOST_PREFIX + "lighthouse" + DOMAIN,
+	:ip => NET + "13",
+	:ssh_host => "20013",
+	:ssh_vm => "22",
+	:ram => 2048,
+	:core => 1,
+	:disk_size => "10GB",
+	}
+]
+
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder ".", "/home/vagrant/share_forder", disabled: false
+  servers.each do |machine|
+    config.vm.define machine[:hostname] do |node|
+      node.vm.box = ISO
+      node.vm.hostname = machine[:hostname]
+      node.vm.network "private_network", ip: machine[:ip]
+      node.vm.network :forwarded_port, guest: machine[:ssh_vm], host: machine[:ssh_host]
+      node.vm.provider "virtualbox" do |vb|
+        vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
+        vb.customize ["modifyvm", :id, "--cpus", machine[:core]]
+        vb.name = machine[:hostname]
+      end
+      node.vm.disk :disk, size: machine[:disk_size]
+      node.vm.provision "ansible" do |setup|
+	setup.inventory_path = INVENTORY_PATH
+	setup.playbook = "./playbook.yml"
+	setup.become = true
+	setup.extra_vars = { ansible_user: 'vagrant' }
+      end
+    end
+  end
+end
