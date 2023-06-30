@@ -3,3 +3,13 @@
     scm: git
     version: "1.11.0"
     name: clickhouse
+
+  - src: git@github.com:nkunaev/lighthouse_homework.git
+    scm: git
+    version: "1.0.0"
+    name: lighthouse
+
+  - src: git@github.com:nkunaev/vector_homework.git
+    scm: git
+    version: "1.0.0"
+    name: vector

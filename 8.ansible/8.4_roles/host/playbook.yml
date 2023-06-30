@@ -16,6 +16,7 @@
         - curl
         - wget
         - unzip
+        - gnupg
     - name: add ssh key
       ansible.builtin.authorized_key:
         user: vagrant
@@ -25,94 +26,25 @@
 
 - name: Install Clickhouse
   hosts: clickhouse
-  handlers:
-    - name: Start clickhouse service
+  roles:
+    - role: clickhouse
       become: true
-      ansible.builtin.service:
-        name: clickhouse-server
-        state: restarted
-  tasks:
-    - block:
-        - name: Get clickhouse distrib
-          ansible.builtin.get_url:
-            url: "https://packages.clickhouse.com/deb/pool/main/c/{{ item }}/{{ item }}_{{ clickhouse_version }}_amd64.deb"
-            dest: "./{{ item }}-{{ clickhouse_version }}.deb"
-          with_items: "{{ clickhouse_packages }}"
-      rescue:
-        - name: Get clickhouse distrib
-          ansible.builtin.get_url:
-            url: "https://packages.clickhouse.com/deb/pool/main/c/clickhouse-common-static/clickhouse-common-static_{{ clickhouse_version }}_amd64.deb"
-            dest: "./clickhouse-common-static-{{ clickhouse_version }}.deb"
-    - name: Install clickhouse packages
-      become: true
-      ansible.builtin.apt:
-        deb: "{{ item }}"
-        state: present
-      with_items:
-        - clickhouse-common-static-{{ clickhouse_version }}.deb
-        - clickhouse-client-{{ clickhouse_version }}.deb
-        - clickhouse-server-{{ clickhouse_version }}.deb
-      notify: Start clickhouse service
-
-
-    - name: Flush handllush_handleers
-      meta: flush_handlers
-
-    - name: wait till clickhouse will be restarted
-      ansible.builtin.pause:
-        seconds: 5
-
-    - name: Create database
-      ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
-      register: create_db
-      failed_when: create_db.rc != 0 and create_db.rc !=82
-      changed_when: create_db.rc == 0
+      clickhouse_version: "22.4.6.53"
+      clickhouse_dbs_custom:
+        - { name: logs, state: present }
 
 - name: Install Vector
   hosts: web
-  handlers:
-    - name: Restart Vector
-      become: true
-      ansible.builtin.service:
-        name: vector
-        state: restarted
-  tasks:
-    - name: Get Vector Package
-      become: true
-      ansible.builtin.apt:
-        deb: https://packages.timber.io/vector/0.30.0/vector_{{ vector_version }}-1_amd64.deb
-        state: present
-      notify: Restart Vector
+  roles:
+    - role: vector-role
+      vector_version: "0.30.0"
+
 
 - name: Install lighthouse
   hosts: lighthouse
-  become: true
+  roles:
+    - role: lighthouse
 
-  handlers:
-    - name: nginx-reload
-      ansible.builtin.service:
-        name: nginx
-        state: restarted
 
-  tasks:
-    - name: Install nginx
-      ansible.builtin.apt:
-        name: nginx
-        state: present
 
-    - name: Get lighthouse from git
-      ansible.builtin.git:
-        repo: "{{ lighthouse_repo }}"
-        version: master
-        dest: "{{ lighthouse_dst_folder }}"
 
-    - name: Make website avaliable
-      tags: config
-      ansible.builtin.template:
-        src: lighthouse.conf.j2
-        dest: "/etc/nginx/sites-enabled/default"
-        mode: 0644
-      notify: nginx-reload
-
-    - name: Flush handllush_handleers
-      meta: flush_handlers

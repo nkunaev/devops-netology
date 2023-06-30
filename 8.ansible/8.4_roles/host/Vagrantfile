@@ -55,6 +55,7 @@ Vagrant.configure("2") do |config|
       end
       node.vm.disk :disk, size: machine[:disk_size]
       node.vm.provision "ansible" do |setup|
+    setup.compatibility_mode = "2.0"
 	setup.inventory_path = INVENTORY_PATH
 	setup.playbook = "./playbook.yml"
 	setup.become = true
