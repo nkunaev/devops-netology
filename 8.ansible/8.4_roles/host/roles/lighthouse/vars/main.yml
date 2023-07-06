@@ -1,0 +1,4 @@
+---
+# vars file for lighthouse
+lighthouse_repo: "https://github.com/vkcom/lighthouse"
+lighthouse_dst_folder: "/var/www/html/lighthouse"

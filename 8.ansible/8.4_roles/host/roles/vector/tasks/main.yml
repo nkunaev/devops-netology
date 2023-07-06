@@ -1,0 +1,8 @@
+---
+# tasks file for vector-role
+- name: Get Vector Package
+  become: true
+  ansible.builtin.apt:
+    deb: https://packages.timber.io/vector/0.30.0/vector_{{ vector_version }}-1_amd64.deb
+    state: present
+  notify: Restart Vector

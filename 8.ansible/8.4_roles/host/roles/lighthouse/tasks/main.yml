@@ -1,0 +1,26 @@
+---
+# tasks file for lighthouse
+- name: Install nginx
+  become: true
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+- name: Get lighthouse from git
+  become: true
+  ansible.builtin.git:
+    repo: "{{ lighthouse_repo }}"
+    version: master
+    dest: "{{ lighthouse_dst_folder }}"
+
+- name: Make website avaliable
+  become: true
+  tags: config
+  ansible.builtin.template:
+    src: lighthouse.conf.j2
+    dest: "/etc/nginx/sites-enabled/default"
+    mode: 0644
+  notify: nginx-reload
+
+- name: Flush handlers
+  meta: flush_handlers
