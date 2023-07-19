@@ -61,3 +61,9 @@ kunaev@dub-ws-235:~/ansible/mnt-homeworks/09-ci-03-cicd/mvn$ tree ~/.m2/reposito
 
 2 directories, 4 files
 ```
+
+Пруф 1
+![img.png](img/img7.png)
+
+Пруф 2
+![img_1.png](img/img_8.png)
