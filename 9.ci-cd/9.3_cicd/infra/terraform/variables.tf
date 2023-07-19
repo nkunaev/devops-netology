@@ -1,18 +1,16 @@
 variable "metadata_info" {
   default = {
     serial-port-enable = 1
-    ssh-keys           = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGMnEWb24K3HZ4E0L7GvrcRUECIhelmu0eBKQuGtK4CR kunaev@dub-ws-235"
   }
   type = object({
     serial-port-enable = number
-    ssh-keys           = string
   })
 }
 
-variable "web_platform_resources" {
+variable "platform_resources" {
   default = {
     cores         = 2
-    memory        = 1
+    memory        = 4
     core_fraction = 5
   }
   type = object({
@@ -22,32 +20,19 @@ variable "web_platform_resources" {
   })
 }
 
-variable "bd_platform_resources" {
-  default = {
-    cores         = 2
-    memory        = 2
-    core_fraction = 20
-  }
-  type = object({
-    cores         = number
-    memory        = number
-    core_fraction = number
-  })
-}
-#vm web image vars
-variable "vm_web_image" {
+variable "vm_image" {
   type        = string
-  default     = "ubuntu-2004-lts"
+  default     = "centos-7"
   description = "https://cloud.yandex.ru/marketplace?categories=os"
 }
 
 #platform vars
-variable "vm_web_platform_name" {
+variable "platform_name" {
   type    = string
-  default = "develop-platform-web"
+  default = "centos7"
 }
 
-variable "vm_web_maintenance_class" {
+variable "vm_maintenance_class" {
   type        = string
   default     = "standard-v1"
   description = "https://cloud.yandex.ru/docs/compute/concepts/vm-platforms"
