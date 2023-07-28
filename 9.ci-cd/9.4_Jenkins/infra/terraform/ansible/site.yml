@@ -112,6 +112,7 @@
           - ansible<3.0
           - 'molecule==3.5.2'
           - molecule_docker
+          - molecule[docker]
         state: present
     - name: Reinstall Selinux
       become_user: root
