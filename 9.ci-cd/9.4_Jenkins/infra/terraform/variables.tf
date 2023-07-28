@@ -29,7 +29,7 @@ variable "vm_image" {
 #platform vars
 variable "platform_name" {
   type    = string
-  default = "centos7"
+  default = "centos-stream-8"
 }
 
 variable "vm_maintenance_class" {

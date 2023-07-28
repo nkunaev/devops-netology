@@ -6,7 +6,7 @@ data "yandex_compute_image" "centos7" {
 resource "yandex_compute_instance" "platform" {
   count = 2
 
-  name        = "${var.platform_name}-server-${count.index}"
+  name        = "${var.platform_name}-jenkins-server-${count.index}"
   platform_id = var.vm_maintenance_class
 
   resources {
