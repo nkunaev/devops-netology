@@ -90,6 +90,9 @@ node("linux"){
 * Проверить работоспособность, исправить ошибки, исправленный Pipeline вложить в репозиторий в файл ScriptedJenkinsfile.
 ![img.png](img.png)
 
-* [ScriptedJenkinsfile](ScriptedJenkinsfile)
+[ScriptedJenkinsfile](ScriptedJenkinsfile)  
+
 [Declarative Pipeline](Declarative Pipeline)
+
 [Scripted Pipeline](Scripted Pipeline)
+
