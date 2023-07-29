@@ -90,6 +90,7 @@ node("linux"){
 * Проверить работоспособность, исправить ошибки, исправленный Pipeline вложить в репозиторий в файл ScriptedJenkinsfile.
 ![img.png](img.png)
 
+* Отправить ссылку на репозиторий с ролью и Declarative Pipeline и Scripted Pipeline.
 [ScriptedJenkinsfile](ScriptedJenkinsfile)  
 
 [Declarative Pipeline](DeclarativePipeline)
