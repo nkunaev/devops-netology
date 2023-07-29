@@ -92,7 +92,7 @@ node("linux"){
 
 [ScriptedJenkinsfile](ScriptedJenkinsfile)  
 
-[Declarative Pipeline](Declarative Pipeline)
+[Declarative Pipeline](DeclarativePipeline)
 
-[Scripted Pipeline](Scripted Pipeline)
+[Scripted Pipeline](ScriptedPipeline)
 
