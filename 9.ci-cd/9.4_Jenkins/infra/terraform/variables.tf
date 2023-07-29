@@ -22,7 +22,7 @@ variable "platform_resources" {
 
 variable "vm_image" {
   type        = string
-  default     = "centos-7"
+  default     = "centos-stream-8"
   description = "https://cloud.yandex.ru/marketplace?categories=os"
 }
 

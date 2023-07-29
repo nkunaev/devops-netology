@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('Run molecule') {
+            steps {
+                sh 'molecule test'
+            }
+        }
+    }
+}

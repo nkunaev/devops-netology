@@ -31,7 +31,7 @@ variable "security_group_ingress" {
     {
       protocol       = "TCP"
       description    = "разрешить входящий http res"
-      v4_cidr_blocks = ["212.59.101.82/32", "158.160.57.81/32", "158.160.52.237/32"]
+      v4_cidr_blocks = ["212.59.101.82/32", "158.160.108.204/32", "158.160.98.57/32"]
       port           = 8080
     },
     {
@@ -43,7 +43,7 @@ variable "security_group_ingress" {
     {
       protocol       = "TCP"
       description    = "разрешить весь исходящий трафик"
-      v4_cidr_blocks = ["212.59.101.82/32", "158.160.57.81/32", "158.160.52.237/32"]
+      v4_cidr_blocks = ["212.59.101.82/32", "158.160.108.204/32", "158.160.98.57/32"]
       from_port      = 25000
       to_port        = 65365
     }

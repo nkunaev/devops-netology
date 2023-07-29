@@ -1,0 +1,19 @@
+node("linux"){
+    stage("Git pull"){
+        git credentialsId: '9e82f86e-c930-40f6-a290-232f2b29deb9', url: 'git@github.com:nkunaev/vector-playbook.git', branch: 'main'
+    }
+    stage("Check environment"){
+        prod_run=true
+    }
+    stage("Run playbook"){
+        if (prod_run){
+            sh 'ansible-galaxy install -r requirements.yml --ignore-errors'
+            sh 'ansible-playbook -i inventory/prod.yml playbook.yml'
+        }
+        else{
+            sh 'ansible-galaxy install -r requirements.yml --ignore-errors'
+            sh 'ansible-playbook -i inventory/prod.yml playbook.yml --check --diff'
+        }
+
+    }
+}

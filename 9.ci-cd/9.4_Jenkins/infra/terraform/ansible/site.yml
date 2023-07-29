@@ -96,6 +96,8 @@
           - docker-ce
           - docker-ce-cli
           - containerd.io
+          - nano
+          - wget
         state: present
     - name: Update pip
       become_user: root
@@ -109,11 +111,13 @@
         executable: pip3
         name:
           - selinux
+          - wheel
           - ansible<3.0
           - 'molecule==3.5.2'
           - molecule_docker
           - molecule[docker]
         state: present
+        extra_args: --ignore-installed
     - name: Reinstall Selinux
       become_user: root
       pip:
