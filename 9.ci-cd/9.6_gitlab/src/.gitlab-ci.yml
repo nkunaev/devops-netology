@@ -1,6 +1,5 @@
 stages:
   - build
-  - deploy
 
 image: docker:20.10.5
 variables:
@@ -12,15 +11,9 @@ services:
   - name: docker:20.10.5-dind
     alias: docker
 
+
 builder:
     stage: build
-    script:
-        - docker build -t hello:gitlab-$CI_COMMIT_SHORT_SHA .
-    except: 
-      - main
-
-deployer:
-    stage: deploy
     script:
         - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
         - docker build -t $CI_REGISTRY_IMAGE:gitlab-$CI_COMMIT_SHORT_SHA .
